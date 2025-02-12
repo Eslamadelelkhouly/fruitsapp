@@ -4,8 +4,33 @@ import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/core/widgets/custom_button.dart';
 import 'package:fruitsapp/features/onBoarding/presentation/views/widgets/on_boarding_page_view.dart';
 
-class OnBoardingBody extends StatelessWidget {
+class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
+
+  @override
+  State<OnBoardingBody> createState() => _OnBoardingBodyState();
+}
+
+class _OnBoardingBodyState extends State<OnBoardingBody> {
+  late PageController pageController;
+  var currentPage = 0;
+  @override
+  void initState() {
+    pageController = PageController();
+    // TODO: implement initState
+    pageController.addListener(
+      () {
+        currentPage = pageController.page!.round();
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
