@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -11,6 +12,25 @@ class PageViewItem extends StatelessWidget {
   final Widget title;
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.5,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: SvgPicture.asset(
+                  backgroundimageurl,
+                  color: Color(0xfffff5e3),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
