@@ -7,9 +7,11 @@ class PageViewItem extends StatelessWidget {
       required this.imageurl,
       required this.backgroundimageurl,
       required this.subtitle,
-      required this.title});
+      required this.title,
+      required this.colorbackground});
   final String imageurl, backgroundimageurl, subtitle;
   final Widget title;
+  final Color colorbackground;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +24,7 @@ class PageViewItem extends StatelessWidget {
               Positioned.fill(
                 child: SvgPicture.asset(
                   backgroundimageurl,
-                  color: Color(0xfffff5e3),
+                  color: colorbackground,
                   fit: BoxFit.fill,
                 ),
               ),
