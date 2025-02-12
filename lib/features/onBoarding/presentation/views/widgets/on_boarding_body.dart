@@ -21,6 +21,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
     pageController.addListener(
       () {
         currentPage = pageController.page!.round();
+        setState(() {});
       },
     );
   }
@@ -37,21 +38,28 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
     return Column(
       children: [
         Expanded(
-          child: OnBoardingPageView(),
+          child: OnBoardingPageView(
+            pageController: pageController,
+          ),
         ),
         DotsIndicator(
           dotsCount: 2,
           decorator: DotsDecorator(
             activeColor: ColorApp.kPrimaryColor,
-            color: ColorApp.kPrimaryColor.withOpacity(.5),
+            color: currentPage == 0
+                ? ColorApp.kPrimaryColor.withOpacity(.5)
+                : ColorApp.kPrimaryColor,
           ),
         ),
         SizedBox(
           height: 29,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: CustomButton(),
+        Visibility(
+          visible: currentPage == 0 ? false : true,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomButton(),
+          ),
         ),
         SizedBox(
           height: 43,
