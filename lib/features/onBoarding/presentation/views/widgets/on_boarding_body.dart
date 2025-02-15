@@ -51,17 +51,17 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 : ColorApp.kPrimaryColor,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 29,
         ),
         Visibility(
           visible: currentPage == 0 ? false : true,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 43,
         ),
       ],

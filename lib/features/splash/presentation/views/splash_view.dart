@@ -27,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
 
   void RouteOnBoarding() {
     Future.delayed(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () {
         Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
       },

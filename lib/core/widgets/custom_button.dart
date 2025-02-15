@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Text(
+        child: const Text(
           'ابدأ الان',
           style: TextStyle(
             color: Colors.white,
