@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:fruitsapp/constant.dart';
+import 'package:fruitsapp/core/services/shared_perefernce_singletone.dart';
 import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/core/widgets/custom_button.dart';
 import 'package:fruitsapp/features/auth/presentation/views/login_view.dart';
@@ -61,6 +63,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(
               onPressed: () {
+                SharedPreferencesSingleton.setBool(kIsBoardingView, true);
                 Navigator.pushReplacementNamed(context, LoginView.routeName);
               },
             ),

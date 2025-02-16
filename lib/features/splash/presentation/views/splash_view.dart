@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruitsapp/constant.dart';
+import 'package:fruitsapp/core/services/shared_perefernce_singletone.dart';
+import 'package:fruitsapp/features/auth/presentation/views/login_view.dart';
 import 'package:fruitsapp/features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:fruitsapp/features/splash/presentation/views/widgets/splash_view_body.dart';
 
@@ -29,7 +32,14 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        bool IsBoaedingView = SharedPreferencesSingleton.getBool(
+          kIsBoardingView,
+        );
+        if (IsBoaedingView == true) {
+          Navigator.pushReplacementNamed(context, LoginView.routeName);
+        } else {
+          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        }
       },
     );
   }
