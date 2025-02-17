@@ -7,20 +7,17 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17),
-      child: TextFormField(
-        decoration: InputDecoration(
-          suffixIcon: suffixIcon,
-          hintText: text,
-          hintStyle: TextStyles.bold13,
-          filled: true,
-          fillColor: Color(0xffE6E9EA),
-          border: CustomBorder(),
-          enabledBorder: CustomBorder(),
-          disabledBorder: CustomBorder(),
-          focusedBorder: CustomBorder(),
-        ),
+    return TextFormField(
+      decoration: InputDecoration(
+        suffixIcon: suffixIcon,
+        hintText: text,
+        hintStyle: TextStyles.bold13,
+        filled: true,
+        fillColor: Color(0xffE6E9EA),
+        border: CustomBorder(),
+        enabledBorder: CustomBorder(),
+        disabledBorder: CustomBorder(),
+        focusedBorder: CustomBorder(),
       ),
     );
   }
