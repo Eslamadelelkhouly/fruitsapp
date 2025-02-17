@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruitsapp/core/helper_function/ongenerate_route.dart';
 import 'package:fruitsapp/core/services/shared_perefernce_singletone.dart';
+import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/features/splash/presentation/views/splash_view.dart';
 import 'package:fruitsapp/generated/l10n.dart';
 
@@ -17,7 +18,10 @@ class FuritHub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Cairo'),
+      theme: ThemeData(
+          fontFamily: 'Cairo',
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.kPrimaryColor)),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
