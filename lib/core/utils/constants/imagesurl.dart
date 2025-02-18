@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/app_icon.png
   static const String imagesAppIcon = "assets/images/app_icon.png";
 
+  /// Assets for imagesAppleIcon
+  /// assets/images/apple_icon.svg
+  static const String imagesAppleIcon = "assets/images/apple_icon.svg";
+
   /// Assets for imagesBackgroundSplash1
   /// assets/images/background_splash1.svg
   static const String imagesBackgroundSplash1 = "assets/images/background_splash1.svg";
@@ -18,6 +22,10 @@ class Assets {
   /// assets/images/bottomsplash.svg
   static const String imagesBottomsplash = "assets/images/bottomsplash.svg";
 
+  /// Assets for imagesFacebookIcon
+  /// assets/images/facebook_icon.svg
+  static const String imagesFacebookIcon = "assets/images/facebook_icon.svg";
+
   /// Assets for imagesFruitSplash1
   /// assets/images/fruit_splash1.svg
   static const String imagesFruitSplash1 = "assets/images/fruit_splash1.svg";
@@ -29,6 +37,10 @@ class Assets {
   /// Assets for imagesFruits
   /// assets/images/fruits.svg
   static const String imagesFruits = "assets/images/fruits.svg";
+
+  /// Assets for imagesGmailIcon
+  /// assets/images/gmail_icon.svg
+  static const String imagesGmailIcon = "assets/images/gmail_icon.svg";
 
   /// Assets for imagesPlanet
   /// assets/images/planet.svg
