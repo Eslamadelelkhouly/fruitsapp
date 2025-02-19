@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruitsapp/core/utils/constants/app_text_style.dart';
 
-AppBar CustomAppBar(BuildContext context) {
+AppBar CustomAppBar(BuildContext context, String text) {
   return AppBar(
     backgroundColor: Colors.white,
     centerTitle: true,
@@ -12,7 +12,7 @@ AppBar CustomAppBar(BuildContext context) {
       child: Icon(Icons.arrow_back_ios),
     ),
     title: Text(
-      'تسجيل الدخول',
+      text,
       style: TextStyles.bold19,
     ),
   );
