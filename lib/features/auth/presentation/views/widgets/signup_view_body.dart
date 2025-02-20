@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_text_check_box.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 
 class SignupViewBody extends StatelessWidget {
@@ -33,6 +34,10 @@ class SignupViewBody extends StatelessWidget {
                 color: Color(0xffC9CECF),
               ),
             ),
+            SizedBox(
+              height: 16,
+            ),
+            CustomTextCheckBox(),
           ],
         ),
       ),
