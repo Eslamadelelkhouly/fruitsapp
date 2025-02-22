@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:fruitsapp/core/utils/constants/app_text_style.dart';
 import 'package:fruitsapp/core/utils/constants/color_app.dart';
+import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_check_box.dart';
 
-class CustomTextCheckBox extends StatelessWidget {
+class CustomTextCheckBox extends StatefulWidget {
   const CustomTextCheckBox({super.key});
 
+  @override
+  State<CustomTextCheckBox> createState() => _CustomTextCheckBoxState();
+}
+
+class _CustomTextCheckBoxState extends State<CustomTextCheckBox> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Checkbox(
-          value: false,
-          onChanged: (value) {},
+        CustomCheckBox(
+          onChanged: (value) {
+            isChecked = value;
+            setState(() {});
+          },
+          isChecked: true,
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width - (16 * 2) - 55,
+          width: 16,
+        ),
+        Expanded(
           child: Text.rich(
             TextSpan(
               children: [

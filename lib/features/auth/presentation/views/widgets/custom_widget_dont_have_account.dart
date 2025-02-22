@@ -7,15 +7,19 @@ import 'package:fruitsapp/features/auth/presentation/views/signup_view.dart';
 class CustomWidgetDontHaveAccount extends StatelessWidget {
   const CustomWidgetDontHaveAccount({
     super.key,
+    required this.text1,
+    required this.text2,
+    this.onTap,
   });
-
+  final String text1, text2;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Text.rich(
       TextSpan(
         children: [
           TextSpan(
-            text: 'لا تمتلك الحساب؟',
+            text: text1,
             style: TextStyles.semiBold16.copyWith(
               color: ColorApp.kGrayColor,
             ),
@@ -27,11 +31,8 @@ class CustomWidgetDontHaveAccount extends StatelessWidget {
             ),
           ),
           TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.pushNamed(context, SignupView.routeName);
-              },
-            text: 'قم بإنشاء حساب',
+            recognizer: TapGestureRecognizer()..onTap = onTap,
+            text: text2,
             style: TextStyles.semiBold16.copyWith(
               color: ColorApp.kPrimaryLightColor,
             ),

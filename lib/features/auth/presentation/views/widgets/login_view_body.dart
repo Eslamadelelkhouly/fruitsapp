@@ -3,6 +3,7 @@ import 'package:fruitsapp/core/utils/constants/app_text_style.dart';
 import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/core/utils/constants/imagesurl.dart';
 import 'package:fruitsapp/core/widgets/custom_button.dart';
+import 'package:fruitsapp/features/auth/presentation/views/signup_view.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_button_social.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_or_divider.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_text_form_field.dart';
@@ -60,7 +61,13 @@ class LoginViewBody extends StatelessWidget {
             SizedBox(
               height: 33,
             ),
-            CustomWidgetDontHaveAccount(),
+            CustomWidgetDontHaveAccount(
+              onTap: () {
+                Navigator.pushNamed(context, SignupView.routeName);
+              },
+              text1: 'لا تمتلك الحساب؟',
+              text2: 'قم بإنشاء حساب',
+            ),
             SizedBox(
               height: 37,
             ),
@@ -69,7 +76,7 @@ class LoginViewBody extends StatelessWidget {
               height: 16,
             ),
             CustomButtonSocial(
-              onPressed: (){},
+              onPressed: () {},
               imageUrl: Assets.imagesGmailIcon,
               title: 'تسجيل بواسطة جوجل',
             ),
@@ -77,7 +84,7 @@ class LoginViewBody extends StatelessWidget {
               height: 16,
             ),
             CustomButtonSocial(
-              onPressed: (){},
+              onPressed: () {},
               imageUrl: Assets.imagesAppleIcon,
               title: 'تسجيل بواسطة أبل',
             ),
@@ -85,7 +92,7 @@ class LoginViewBody extends StatelessWidget {
               height: 16,
             ),
             CustomButtonSocial(
-              onPressed: (){},
+              onPressed: () {},
               imageUrl: Assets.imagesFacebookIcon,
               title: 'تسجيل بواسطة فيسبوك',
             ),
