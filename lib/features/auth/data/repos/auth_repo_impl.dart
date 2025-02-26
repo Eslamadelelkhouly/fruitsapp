@@ -12,7 +12,7 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl({required this.firebaseAuthServices});
   @override
   Future<Either<Failures, UserEntity>> createUserWithEmailandPassword(
-      String email, String password) async {
+      String email, String password, String name) async {
     try {
       var user = await firebaseAuthServices.createEmailandPassword(
         email: email,
