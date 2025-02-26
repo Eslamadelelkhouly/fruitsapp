@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruitsapp/core/services/get_it_services.dart';
 import 'package:fruitsapp/core/widgets/custom_app_bar.dart';
+import 'package:fruitsapp/features/auth/domain/repos/auth_repo.dart';
+import 'package:fruitsapp/features/auth/presentation/cubits/signup_cubits/sign_up_cubit.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/signup_view_body.dart';
 
 class SignupView extends StatelessWidget {
@@ -8,9 +12,14 @@ class SignupView extends StatelessWidget {
   static const String routeName = 'signup';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(context, 'حساب جديد'),
-      body: SignupViewBody(),
+    return BlocProvider(
+      create: (context) => SignUpCubit(
+        getIt<AuthRepo>(),
+      ),
+      child: Scaffold(
+        appBar: CustomAppBar(context, 'حساب جديد'),
+        body: SignupViewBody(),
+      ),
     );
   }
 }
