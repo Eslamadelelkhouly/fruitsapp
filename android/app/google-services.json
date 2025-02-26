@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "504671226774",
+    "project_id": "fruitsapp-fb422",
+    "storage_bucket": "fruitsapp-fb422.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504671226774:android:10d55f1b342eb3b714abb7",
+        "android_client_info": {
+          "package_name": "com.example.fruitsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRmcThFVHfndRI4kKZFNPf4IepgGjONCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504671226774:android:8236bc41d839d66114abb7",
+        "android_client_info": {
+          "package_name": "com.fruitsapp.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRmcThFVHfndRI4kKZFNPf4IepgGjONCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
