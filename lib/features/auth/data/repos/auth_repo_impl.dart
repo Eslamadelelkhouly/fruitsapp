@@ -22,7 +22,7 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(message: e.toString()));
     } catch (e) {
-      return left(ServerFailure(message: 'An error occured , try again later'));
+      return left(ServerFailure(message: 'مشكلة في انشاء الحساب'));
     }
   }
 }

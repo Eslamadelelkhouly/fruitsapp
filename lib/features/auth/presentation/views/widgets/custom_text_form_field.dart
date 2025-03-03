@@ -6,13 +6,21 @@ class CustomTextFormField extends StatelessWidget {
       {super.key,
       required this.text,
       this.suffixIcon,
-      required this.keyboardType});
+      required this.keyboardType,
+      this.onSaved});
   final String text;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
+  final String? Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'من فضلك ادخل البيانات المطلوبة';
+        }
+      },
+      onSaved: onSaved,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
