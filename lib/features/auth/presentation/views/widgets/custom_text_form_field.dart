@@ -7,14 +7,17 @@ class CustomTextFormField extends StatelessWidget {
       required this.text,
       this.suffixIcon,
       required this.keyboardType,
+      this.obcureText = false,
       this.onSaved});
   final String text;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
   final String? Function(String?)? onSaved;
+  final bool? obcureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obcureText!,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'من فضلك ادخل البيانات المطلوبة';
