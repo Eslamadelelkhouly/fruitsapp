@@ -14,15 +14,24 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failures, UserEntity>> createUserWithEmailandPassword(
       String email, String password, String name) async {
     try {
+      print('محاولة إنشاء مستخدم باستخدام البريد الإلكتروني: $email');
       var user = await firebaseAuthServices.createEmailandPassword(
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user));
+      if (user != null) {
+        print('تم إنشاء المستخدم بنجاح: ${user.uid}');
+        return right(UserModel.fromFirebaseUser(user));
+      } else {
+        print('فشل في إنشاء المستخدم: user is null');
+        return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
+      }
     } on CustomException catch (e) {
-      return left(ServerFailure(message: e.toString()));
+      print('تم رمي CustomException: ${e.message}');
+      return left(ServerFailure(message: e.message));
     } catch (e) {
-      return left(ServerFailure(message: 'مشكلة في انشاء الحساب'));
+      print('حدث خطأ غير متوقع: $e');
+      return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
 }
