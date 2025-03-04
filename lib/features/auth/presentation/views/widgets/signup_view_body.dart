@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruitsapp/core/widgets/build_error_bar.dart';
 import 'package:fruitsapp/core/widgets/custom_button.dart';
 import 'package:fruitsapp/features/auth/presentation/cubits/signup_cubits/sign_up_cubit.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_password_field.dart';
@@ -18,6 +19,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> key = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password, name;
+  late bool isCheck = false;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,14 +54,18 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 height: 16,
               ),
               PasswordField(
-                onSaved: (value){
+                onSaved: (value) {
                   password = value!;
                 },
               ),
               SizedBox(
                 height: 16,
               ),
-              CustomTextCheckBox(),
+              CustomTextCheckBox(
+                onChanged: (value) {
+                  isCheck = value;
+                },
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -68,9 +74,15 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   if (key.currentState!.validate()) {
                     key.currentState!.save();
                     autovalidateMode = AutovalidateMode.disabled;
-                    context
-                        .read<SignUpCubit>()
-                        .createUserWithEmailandPassword(email, password, name);
+                    if (isCheck) {
+                      context
+                          .read<SignUpCubit>()
+                          .createUserWithEmailandPassword(
+                              email, password, name);
+                    } else {
+                      BuildErrorBar(
+                          context, 'يجب الموافقة على الشروط والاحكام');
+                    }
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
@@ -96,5 +108,3 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     );
   }
 }
-
-

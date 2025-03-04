@@ -4,8 +4,9 @@ import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_check_box.dart';
 
 class CustomTextCheckBox extends StatefulWidget {
-  const CustomTextCheckBox({super.key});
+  const CustomTextCheckBox({super.key, required this.onChanged});
 
+  final ValueChanged<bool> onChanged;
   @override
   State<CustomTextCheckBox> createState() => _CustomTextCheckBoxState();
 }
@@ -19,9 +20,10 @@ class _CustomTextCheckBoxState extends State<CustomTextCheckBox> {
         CustomCheckBox(
           onChanged: (value) {
             isChecked = value;
+            widget.onChanged(value);
             setState(() {});
           },
-          isChecked: true,
+          isChecked: isChecked,
         ),
         SizedBox(
           width: 16,
