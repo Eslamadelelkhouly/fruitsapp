@@ -9,8 +9,8 @@ import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_or_div
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:fruitsapp/features/auth/presentation/views/widgets/custom_widget_dont_have_account.dart';
 
-class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+class SignInViewBody extends StatelessWidget {
+  const SignInViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruitsapp/constant.dart';
 import 'package:fruitsapp/core/services/shared_perefernce_singletone.dart';
-import 'package:fruitsapp/features/auth/presentation/views/login_view.dart';
+import 'package:fruitsapp/features/auth/presentation/views/signin_view.dart';
 import 'package:fruitsapp/features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:fruitsapp/features/splash/presentation/views/widgets/splash_view_body.dart';
 
@@ -36,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
           kIsBoardingView,
         );
         if (IsBoaedingView == true) {
-          Navigator.pushReplacementNamed(context, LoginView.routeName);
+          Navigator.pushReplacementNamed(context, SigninView.routeName);
         } else {
           Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
         }

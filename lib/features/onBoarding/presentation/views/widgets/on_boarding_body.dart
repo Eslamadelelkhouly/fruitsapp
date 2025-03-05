@@ -4,7 +4,7 @@ import 'package:fruitsapp/constant.dart';
 import 'package:fruitsapp/core/services/shared_perefernce_singletone.dart';
 import 'package:fruitsapp/core/utils/constants/color_app.dart';
 import 'package:fruitsapp/core/widgets/custom_button.dart';
-import 'package:fruitsapp/features/auth/presentation/views/login_view.dart';
+import 'package:fruitsapp/features/auth/presentation/views/signin_view.dart';
 import 'package:fruitsapp/features/onBoarding/presentation/views/widgets/on_boarding_page_view.dart';
 
 class OnBoardingBody extends StatefulWidget {
@@ -65,7 +65,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               text: 'ابدأ الان',
               onPressed: () {
                 SharedPreferencesSingleton.setBool(kIsBoardingView, true);
-                Navigator.pushReplacementNamed(context, LoginView.routeName);
+                Navigator.pushReplacementNamed(context, SigninView.routeName);
               },
             ),
           ),
