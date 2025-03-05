@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruitsapp/core/errors/custom_exception.dart';
 import 'package:fruitsapp/core/errors/failures.dart';
@@ -27,11 +29,40 @@ class AuthRepoImpl extends AuthRepo {
         return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
       }
     } on CustomException catch (e) {
+      log('CustomException in auth repo implmenentation: ${e.message}');
       print('تم رمي CustomException: ${e.message}');
       return left(ServerFailure(message: e.message));
     } catch (e) {
+      log("auth repo implmenentation: $e");
       print('حدث خطأ غير متوقع: $e');
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
+    }
+  }
+  
+  @override
+  Future<Either<Failures, UserEntity>> signInEmailandPassword({required String email, required String password})async {
+    try {
+      print('محاولة تسجيل دخول باستخدام البريد الإلكتروني: $email');
+      var user = await firebaseAuthServices.signInEmailandPassword(
+        email: email,
+        password: password,
+      );
+      if (user != null) {
+        print('تم تسجيل دخول المستخدم بنجاح: ${user.uid}');
+        return right(UserModel.fromFirebaseUser(user));
+      } else {
+        print('فشل في تسجيل دخول المستخدم: user is null');
+        return left(ServerFailure(message: 'فشل في تسجيل دخول المستخدم'));
+      }
+    }
+    on CustomException catch (e) {
+      log('CustomException in auth repo implmenentation: ${e.message}');
+      print('تم رمي CustomException: ${e.message}');
+      return left(ServerFailure(message: e.message));
+    } catch (e) { 
+      log("auth repo implmenentation: $e");
+      print('حدث خطأ غير متوقع: $e');
+      return left(ServerFailure(message: 'خطأ غير متوقع أثناء تسجيل دخول: $e'));
     }
   }
 }
