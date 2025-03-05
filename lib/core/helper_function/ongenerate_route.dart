@@ -12,8 +12,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case SignupView.routeName:
       return MaterialPageRoute(builder: (context) => const SignupView());
-    case LoginView.routeName:
-      return MaterialPageRoute(builder: (context) => const LoginView());
+    case SigninView.routeName:
+      return MaterialPageRoute(builder: (context) => const SigninView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
