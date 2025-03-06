@@ -38,9 +38,10 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
-  
+
   @override
-  Future<Either<Failures, UserEntity>> signInEmailandPassword({required String email, required String password})async {
+  Future<Either<Failures, UserEntity>> signInEmailandPassword(
+      {required String email, required String password}) async {
     try {
       print('محاولة تسجيل دخول باستخدام البريد الإلكتروني: $email');
       var user = await firebaseAuthServices.signInEmailandPassword(
@@ -54,15 +55,32 @@ class AuthRepoImpl extends AuthRepo {
         print('فشل في تسجيل دخول المستخدم: user is null');
         return left(ServerFailure(message: 'فشل في تسجيل دخول المستخدم'));
       }
-    }
-    on CustomException catch (e) {
+    } on CustomException catch (e) {
       log('CustomException in auth repo implmenentation: ${e.message}');
       print('تم رمي CustomException: ${e.message}');
       return left(ServerFailure(message: e.message));
-    } catch (e) { 
+    } catch (e) {
       log("auth repo implmenentation: $e");
       print('حدث خطأ غير متوقع: $e');
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء تسجيل دخول: $e'));
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await firebaseAuthServices.signInWithGoogle();
+      if (user != null) {
+        print('تم إنشاء المستخدم بنجاح: ${user.uid}');
+        return right(UserModel.fromFirebaseUser(user));
+      } else {
+        print('فشل في إنشاء المستخدم: user is null');
+        return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
+      }
+    } catch (e) {
+      log("auth repo implmenentation: $e");
+      print('حدث خطأ غير متوقع: $e');
+      return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
 }
