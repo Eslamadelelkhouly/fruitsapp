@@ -25,7 +25,22 @@ class SignInCubit extends Cubit<SignInState> {
         print('❌ فشل في تسجيل دخول: ${failures.message}');
         emit(SignInFailures(message: failures.message));
       },
-      
+      (userEntity) {
+        print('✅ نجاح تسجيل دخول للمستخدم: ${userEntity.email}');
+        emit(SignInSucess(user: userEntity));
+      },
+    );
+  }
+
+  Future<void> signInWithGoogle() async {
+    print('بدء عملية تسجيل دخول...');
+    emit(SignInLoading());
+    final result = await authRepo.signInWithGoogle();
+    result.fold(
+      (failures) {
+        print('❌ فشل في تسجيل دخول: ${failures.message}');
+        emit(SignInFailures(message: failures.message));
+      },
       (userEntity) {
         print('✅ نجاح تسجيل دخول للمستخدم: ${userEntity.email}');
         emit(SignInSucess(user: userEntity));

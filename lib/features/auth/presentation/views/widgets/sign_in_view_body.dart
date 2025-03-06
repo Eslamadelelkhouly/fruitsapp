@@ -102,7 +102,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 height: 16,
               ),
               CustomButtonSocial(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<SignInCubit>().signInWithGoogle();
+                },
                 imageUrl: Assets.imagesGmailIcon,
                 title: 'تسجيل بواسطة جوجل',
               ),
