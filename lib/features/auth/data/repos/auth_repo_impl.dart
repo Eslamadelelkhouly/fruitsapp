@@ -83,4 +83,23 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithFacebook() async {
+    // TODO: implement signInWithFacebook
+    try {
+      var user = await firebaseAuthServices.signInWithFacebook();
+      if (user != null) {
+        print('تم إنشاء المستخدم بنجاح: ${user.uid}');
+        return right(UserModel.fromFirebaseUser(user));
+      } else {
+        print('فشل في إنشاء المستخدم: user is null');
+        return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
+      }
+    } catch (e) {
+      log("auth repo implmenentation: $e");
+      print('حدث خطأ غير متوقع: $e');
+      return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
+    }
+  }
 }
