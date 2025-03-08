@@ -112,14 +112,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 height: 16,
               ),
               CustomButtonSocial(
-                onPressed: () {},
-                imageUrl: Assets.imagesAppleIcon,
-                title: 'تسجيل بواسطة أبل',
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              CustomButtonSocial(
                 onPressed: () {
                   context.read<SignInCubit>().signInWithFacebook();
                 },

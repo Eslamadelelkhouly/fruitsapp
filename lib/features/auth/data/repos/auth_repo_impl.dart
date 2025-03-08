@@ -102,4 +102,10 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
+  
+  @override
+  Future addUser({required UserEntity user}) {
+    // TODO: implement addUser
+    throw UnimplementedError();
+  }
 }
