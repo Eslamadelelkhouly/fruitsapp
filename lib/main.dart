@@ -14,10 +14,10 @@ import 'package:fruitsapp/generated/l10n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesSingleton.init();
-  setupGetIt();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setupGetIt();
   Bloc.observer = CustomBlocObserver();
   runApp(const FuritHub());
 }
@@ -45,4 +45,4 @@ class FuritHub extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-} 
+}

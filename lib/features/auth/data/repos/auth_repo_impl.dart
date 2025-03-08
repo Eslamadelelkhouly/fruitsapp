@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:fruitsapp/core/errors/custom_exception.dart';
 import 'package:fruitsapp/core/errors/failures.dart';
+import 'package:fruitsapp/core/services/backend_endpoint.dart';
+import 'package:fruitsapp/core/services/database_services.dart';
 import 'package:fruitsapp/core/services/firebase_auth_services.dart';
 import 'package:fruitsapp/features/auth/data/models/user_model.dart';
 import 'package:fruitsapp/features/auth/domain/entities/user_entity.dart';
@@ -10,8 +12,12 @@ import 'package:fruitsapp/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthServices firebaseAuthServices;
+  final DatabaseServices databaseServices;
 
-  AuthRepoImpl({required this.firebaseAuthServices});
+  AuthRepoImpl({
+    required this.databaseServices,
+    required this.firebaseAuthServices,
+  });
   @override
   Future<Either<Failures, UserEntity>> createUserWithEmailandPassword(
       String email, String password, String name) async {
@@ -50,7 +56,9 @@ class AuthRepoImpl extends AuthRepo {
       );
       if (user != null) {
         print('تم تسجيل دخول المستخدم بنجاح: ${user.uid}');
-        return right(UserModel.fromFirebaseUser(user));
+        var userEntity = UserModel.fromFirebaseUser(user);
+        await addUser(user: userEntity);
+        return right(userEntity);
       } else {
         print('فشل في تسجيل دخول المستخدم: user is null');
         return left(ServerFailure(message: 'فشل في تسجيل دخول المستخدم'));
@@ -102,10 +110,13 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
     }
   }
-  
+
   @override
-  Future addUser({required UserEntity user}) {
+  Future addUser({required UserEntity user}) async {
     // TODO: implement addUser
-    throw UnimplementedError();
+    await databaseServices.addUser(
+      path: BackendEndpoint.addUser,
+      data: user.toMap(),
+    );
   }
 }
