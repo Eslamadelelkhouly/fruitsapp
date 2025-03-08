@@ -45,4 +45,4 @@ class FuritHub extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-}
+} 
