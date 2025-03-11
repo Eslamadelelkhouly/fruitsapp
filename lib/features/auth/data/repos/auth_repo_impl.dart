@@ -62,9 +62,11 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
+      var userEntity = await getUser(Uid: user!.uid);
+
       if (user != null) {
         print('تم تسجيل دخول المستخدم بنجاح: ${user.uid}');
-        return right(UserModel.fromFirebaseUser(user));
+        return right(userEntity);
       } else {
         print('فشل في تسجيل دخول المستخدم: user is null');
         return left(ServerFailure(message: 'فشل في تسجيل دخول المستخدم'));
@@ -142,5 +144,14 @@ class AuthRepoImpl extends AuthRepo {
       path: BackendEndpoint.addUser,
       data: user.toMap(),
     );
+  }
+
+  @override
+  Future<UserEntity> getUser({required String Uid}) async {
+    var userData = await databaseServices.getData(
+      path: BackendEndpoint.addUser,
+      documentId: Uid,
+    );
+    return UserModel.fromJson(userData);
   }
 }
