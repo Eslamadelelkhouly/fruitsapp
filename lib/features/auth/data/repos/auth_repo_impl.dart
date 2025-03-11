@@ -88,16 +88,22 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthServices.signInWithGoogle();
+      user = await firebaseAuthServices.signInWithGoogle();
       if (user != null) {
+        var userEntity = UserModel.fromFirebaseUser(user);
+        await addUser(user: userEntity);
         print('تم إنشاء المستخدم بنجاح: ${user.uid}');
-        return right(UserModel.fromFirebaseUser(user));
+        return right(userEntity);
       } else {
         print('فشل في إنشاء المستخدم: user is null');
         return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
       }
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthServices.deleteUser();
+      }
       log("auth repo implmenentation: $e");
       print('حدث خطأ غير متوقع: $e');
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
@@ -106,10 +112,13 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInWithFacebook() async {
-    // TODO: implement signInWithFacebook
+    User? user;
     try {
-      var user = await firebaseAuthServices.signInWithFacebook();
+      User? user;
+      user = await firebaseAuthServices.signInWithFacebook();
       if (user != null) {
+        var userEntity = UserModel.fromFirebaseUser(user);
+        await addUser(user: userEntity);
         print('تم إنشاء المستخدم بنجاح: ${user.uid}');
         return right(UserModel.fromFirebaseUser(user));
       } else {
@@ -117,6 +126,9 @@ class AuthRepoImpl extends AuthRepo {
         return left(ServerFailure(message: 'فشل في إنشاء المستخدم'));
       }
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthServices.deleteUser();
+      }
       log("auth repo implmenentation: $e");
       print('حدث خطأ غير متوقع: $e');
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء التسجيل: $e'));
