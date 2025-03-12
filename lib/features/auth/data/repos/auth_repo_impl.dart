@@ -55,18 +55,15 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failures, UserEntity>> signInEmailandPassword(
       {required String email, required String password}) async {
-    User? user;
     try {
       print('محاولة تسجيل دخول باستخدام البريد الإلكتروني: $email');
-      user = await firebaseAuthServices.signInEmailandPassword(
+      var user = await firebaseAuthServices.signInEmailandPassword(
         email: email,
         password: password,
       );
-      var userEntity = await getUser(Uid: user!.uid);
-
       if (user != null) {
         print('تم تسجيل دخول المستخدم بنجاح: ${user.uid}');
-        return right(userEntity);
+        return right(UserModel.fromFirebaseUser(user));
       } else {
         print('فشل في تسجيل دخول المستخدم: user is null');
         return left(ServerFailure(message: 'فشل في تسجيل دخول المستخدم'));
@@ -74,15 +71,9 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       log('CustomException in auth repo implmenentation: ${e.message}');
       print('تم رمي CustomException: ${e.message}');
-      if (user != null) {
-        await firebaseAuthServices.deleteUser();
-      }
       return left(ServerFailure(message: e.message));
     } catch (e) {
       log("auth repo implmenentation: $e");
-      if (user != null) {
-        await firebaseAuthServices.deleteUser();
-      }
       print('حدث خطأ غير متوقع: $e');
       return left(ServerFailure(message: 'خطأ غير متوقع أثناء تسجيل دخول: $e'));
     }
@@ -140,16 +131,16 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future addUser({required UserEntity user}) async {
     // TODO: implement addUser
-    await databaseServices.addUser(
-      path: BackendEndpoint.addUser,
-      data: user.toMap(),
-    );
+    await databaseServices.addData(
+        path: BackendEndpoint.addUser,
+        data: user.toMap(),
+        documentID: user.Uid);
   }
 
   @override
   Future<UserEntity> getUser({required String Uid}) async {
     var userData = await databaseServices.getData(
-      path: BackendEndpoint.addUser,
+      path: BackendEndpoint.getUser,
       documentId: Uid,
     );
     return UserModel.fromJson(userData);

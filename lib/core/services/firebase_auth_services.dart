@@ -6,10 +6,10 @@ import 'package:fruitsapp/core/errors/custom_exception.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthServices {
-  
-  Future deleteUser()async{
+  Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
+
   Future<User?> createEmailandPassword(
       {required String email, required String password}) async {
     try {
@@ -45,19 +45,24 @@ class FirebaseAuthServices {
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       log('FirebaseAuthException: ${e.message}');
-      if (e.code == 'user-not-found') {
-        throw CustomException(
-            message: 'كلمة المرور او البريد الالكتروني غير صحيحة');
-      } else if (e.code == 'wrong-password') {
-        throw CustomException(
-            message: 'كلمة المرور او البريد الالكتروني غير صحيحة');
-      } else {
-        throw CustomException(message: 'حدث خطأ في Firebase: ${e.message}');
-      }
-    } catch (e) {
-      log('حدث خطأ غير متوقع: ${e.toString()}');
-      throw CustomException(message: 'حدث خطأ غير متوقع: ${e.toString()}');
+      switch (e.code) {
+      case 'user-not-found':
+        throw CustomException(message: 'المستخدم غير موجود، تحقق من البريد الإلكتروني.');
+      case 'wrong-password':
+        throw CustomException(message: 'كلمة المرور غير صحيحة.');
+      case 'invalid-email':
+        throw CustomException(message: 'البريد الإلكتروني غير صالح.');
+      case 'user-disabled':
+        throw CustomException(message: 'تم تعطيل هذا الحساب.');
+      case 'too-many-requests':
+        throw CustomException(message: 'تم حظر محاولات تسجيل الدخول مؤقتًا. حاول لاحقًا.');
+      default:
+        throw CustomException(message: 'خطأ Firebase: ${e.message}');
     }
+  } catch (e) {
+    log('Unexpected error: ${e.toString()}');
+    throw CustomException(message: 'حدث خطأ غير متوقع: ${e.toString()}');
+  }
   }
 
   Future<User?> signInWithGoogle() async {
