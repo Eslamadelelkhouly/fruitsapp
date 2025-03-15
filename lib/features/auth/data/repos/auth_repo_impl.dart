@@ -63,6 +63,15 @@ class AuthRepoImpl extends AuthRepo {
       );
       if (user != null) {
         print('تم تسجيل دخول المستخدم بنجاح: ${user.uid}');
+        var isUserExist = await databaseServices.checkUserIfExist(
+          path: BackendEndpoint.ExistUser,
+          documentId: user.uid,
+        );
+        if (isUserExist) {
+          await getUser(Uid: user.uid);
+        } else {
+          addUser(user: UserModel.fromFirebaseUser(user));
+        }
         return right(UserModel.fromFirebaseUser(user));
       } else {
         print('فشل في تسجيل دخول المستخدم: user is null');
