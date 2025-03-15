@@ -46,8 +46,16 @@ class Assets {
   /// assets/images/gmail_icon.svg
   static const String imagesGmailIcon = "assets/images/gmail_icon.svg";
 
+  /// Assets for imagesNotification
+  /// assets/images/notification.svg
+  static const String imagesNotification = "assets/images/notification.svg";
+
   /// Assets for imagesPlanet
   /// assets/images/planet.svg
   static const String imagesPlanet = "assets/images/planet.svg";
+
+  /// Assets for imagesProfilephoto
+  /// assets/images/profilephoto.png
+  static const String imagesProfilephoto = "assets/images/profilephoto.png";
 }
 
