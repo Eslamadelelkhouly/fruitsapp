@@ -10,69 +10,72 @@ class FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return Container(
-      height: 158,
-      child: AspectRatio(
-        aspectRatio: 342 / 151,
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: width * 0.4,
-              child: Image.asset(
-                Assets.imagesFruitstest,
-                fit: BoxFit.fill,
-              ),
-            ),
-            Container(
-              width: width * 0.5,
-              height: 158,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: svg.Svg(Assets.imagesFeatureitembackground),
+    double width = MediaQuery.of(context).size.width - 32;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4),
+      child: Container(
+        height: 158,
+        child: AspectRatio(
+          aspectRatio: 342 / 151,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: width * 0.4,
+                child: Image.asset(
+                  Assets.imagesFruitstest,
                   fit: BoxFit.fill,
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  right: 34,
+              Container(
+                width: width * 0.5,
+                height: 158,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: svg.Svg(Assets.imagesFeatureitembackground),
+                    fit: BoxFit.fill,
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Text(
-                      'عروض العيد',
-                      style: TextStyles.regular13.copyWith(
-                        color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 34,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 32,
                       ),
-                    ),
-                    Spacer(),
-                    Text(
-                      'خصم 25%',
-                      style: TextStyles.bold19.copyWith(
-                        color: Colors.white,
+                      Text(
+                        'عروض العيد',
+                        style: TextStyles.regular13.copyWith(
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 11,
-                    ),
-                    FeaturedItemButton(
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      height: 29,
-                    ),
-                  ],
+                      Spacer(),
+                      Text(
+                        'خصم 25%',
+                        style: TextStyles.bold19.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 11,
+                      ),
+                      FeaturedItemButton(
+                        onPressed: () {},
+                      ),
+                      SizedBox(
+                        height: 29,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

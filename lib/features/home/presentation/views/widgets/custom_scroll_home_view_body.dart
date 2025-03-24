@@ -3,6 +3,7 @@ import 'package:fruitsapp/constant.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/custom_home_appbar.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/custom_text_field_search.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/featured_item.dart';
+import 'package:fruitsapp/features/home/presentation/views/widgets/featured_list.dart';
 
 class CustomScrollHomeViewBody extends StatelessWidget {
   const CustomScrollHomeViewBody({super.key});
@@ -27,7 +28,7 @@ class CustomScrollHomeViewBody extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                FeaturedItem(),
+                FeaturedList(),
               ],
             ),
           ),
