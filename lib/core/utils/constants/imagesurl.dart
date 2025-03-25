@@ -54,6 +54,10 @@ class Assets {
   /// assets/images/fruitstest.png
   static const String imagesFruitstest = "assets/images/fruitstest.png";
 
+  /// Assets for imagesFruitstripl
+  /// assets/images/fruitstripl.png
+  static const String imagesFruitstripl = "assets/images/fruitstripl.png";
+
   /// Assets for imagesGmailIcon
   /// assets/images/gmail_icon.svg
   static const String imagesGmailIcon = "assets/images/gmail_icon.svg";
