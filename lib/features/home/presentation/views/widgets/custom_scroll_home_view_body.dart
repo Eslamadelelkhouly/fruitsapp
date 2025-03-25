@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruitsapp/constant.dart';
+import 'package:fruitsapp/features/home/presentation/views/widgets/best_seller_text.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/custom_home_appbar.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/custom_text_field_search.dart';
 import 'package:fruitsapp/features/home/presentation/views/widgets/featured_item.dart';
@@ -29,6 +30,10 @@ class CustomScrollHomeViewBody extends StatelessWidget {
                   height: 12,
                 ),
                 FeaturedList(),
+                SizedBox(
+                  height: 12,
+                ),
+                BestSellerText(),
               ],
             ),
           ),
