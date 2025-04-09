@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruitsapp/core/utils/constants/app_text_style.dart';
 import 'package:fruitsapp/core/utils/constants/imagesurl.dart';
+import 'package:fruitsapp/core/widgets/notification_widget.dart';
 
 class CustomHomeAppbar extends StatelessWidget {
   const CustomHomeAppbar({super.key});
@@ -23,17 +23,8 @@ class CustomHomeAppbar extends StatelessWidget {
         'أحمد مصطفي',
         style: TextStyles.bold16,
       ),
-      trailing: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Color(0xffEEF8ED),
-        ),
-        padding: const EdgeInsets.all(15),
-        child: SvgPicture.asset(
-          Assets.imagesNotification,
-          fit: BoxFit.cover,
-        ),
-      ),
+      trailing: NotificationWidget(),
     );
   }
 }
+
