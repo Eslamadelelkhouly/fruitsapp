@@ -62,6 +62,14 @@ class Assets {
   /// assets/images/gmail_icon.svg
   static const String imagesGmailIcon = "assets/images/gmail_icon.svg";
 
+  /// Assets for imagesHomeInteractive
+  /// assets/images/home-interactive.svg
+  static const String imagesHomeInteractive = "assets/images/home-interactive.svg";
+
+  /// Assets for imagesHomeNointeracive
+  /// assets/images/home-nointeracive.svg
+  static const String imagesHomeNointeracive = "assets/images/home-nointeracive.svg";
+
   /// Assets for imagesNotification
   /// assets/images/notification.svg
   static const String imagesNotification = "assets/images/notification.svg";
@@ -70,6 +78,14 @@ class Assets {
   /// assets/images/planet.svg
   static const String imagesPlanet = "assets/images/planet.svg";
 
+  /// Assets for imagesProductInteractive
+  /// assets/images/product-interactive.svg
+  static const String imagesProductInteractive = "assets/images/product-interactive.svg";
+
+  /// Assets for imagesProductLogoNointeractive
+  /// assets/images/product-logo-nointeractive.svg
+  static const String imagesProductLogoNointeractive = "assets/images/product-logo-nointeractive.svg";
+
   /// Assets for imagesProfilephoto
   /// assets/images/profilephoto.png
   static const String imagesProfilephoto = "assets/images/profilephoto.png";
@@ -77,5 +93,21 @@ class Assets {
   /// Assets for imagesSearch
   /// assets/images/search.svg
   static const String imagesSearch = "assets/images/search.svg";
+
+  /// Assets for imagesShoppingCartInteractive
+  /// assets/images/shopping-cart-interactive.svg
+  static const String imagesShoppingCartInteractive = "assets/images/shopping-cart-interactive.svg";
+
+  /// Assets for imagesShoppingCartNointeracive
+  /// assets/images/shopping-cart-nointeracive.svg
+  static const String imagesShoppingCartNointeracive = "assets/images/shopping-cart-nointeracive.svg";
+
+  /// Assets for imagesUserInteracive
+  /// assets/images/user-interacive.svg
+  static const String imagesUserInteracive = "assets/images/user-interacive.svg";
+
+  /// Assets for imagesUserNointeracive
+  /// assets/images/user-nointeracive.svg
+  static const String imagesUserNointeracive = "assets/images/user-nointeracive.svg";
 }
 
